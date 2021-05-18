@@ -2,7 +2,7 @@ package main.rooms;
 
 import java.util.Set;
 
-public abstract class BaseRoom {
+public abstract class BaseRoom implements Cloneable {
 
     private int number;
 
@@ -10,6 +10,8 @@ public abstract class BaseRoom {
 
     private boolean outer;
     private boolean visited;
+
+    private boolean finalDifficulty;
 
     public BaseRoom(int number, Set<Link> links, boolean outer) {
         this.number = number;
@@ -51,5 +53,22 @@ public abstract class BaseRoom {
 
     public boolean getVisited() {
         return visited;
+    }
+
+    public boolean isFinalDifficulty() {
+        return finalDifficulty;
+    }
+
+    public void setFinalDifficulty(boolean finalDifficulty) {
+        this.finalDifficulty = finalDifficulty;
+    }
+
+    public BaseRoom clone() {
+        try {
+            return (BaseRoom) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
